@@ -1,0 +1,26 @@
+# Common Node/Web exclusions
+node_modules/
+dist/
+.DS_Store
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.staging
+.env.production
+
+# IDE-specific configs
+.vscode/
+.idea/
+.gemini/
+.agents/
+tmp/
+attached_assets/
+
+# Optional: Framework specific
+.next/
+.serverless/
+.turbo/
+build/
