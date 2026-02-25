@@ -3,7 +3,7 @@
 # beau-dev-blueprint Onboarding Script
 # This script "Agent-izes" any repository with your universal standards.
 
-BLUEPRINT_REPO="https://github.com/beauzone/beau-dev-blueprint.git" # Update after push
+BLUEPRINT_REPO="https://github.com/beauzone/beau-dev-blueprint.git"
 STAGING_DIR="$HOME/.beau-dev-blueprint"
 
 echo "🚀 Starting AntiGravity Onboarding..."
