@@ -59,6 +59,28 @@ if [ ! -f "setup-quality.sh" ]; then
     cp "$STAGING_DIR/setup-quality.sh" setup-quality.sh
 fi
 
+# 7. Sync Environment & AntiGravity Config
+echo "🔄 Syncing Environment & AntiGravity Config..."
+
+# Sync Brewfile if it exists
+if [ -f "$STAGING_DIR/Brewfile" ]; then
+    echo "🍺 Syncing Homebrew packages..."
+    brew bundle --file="$STAGING_DIR/Brewfile"
+fi
+
+# Sync AntiGravity MCP Config
+mkdir -p "$HOME/.gemini/antigravity"
+if [ -f "$STAGING_DIR/profiles/mcp_config.json" ]; then
+    echo "⚙️  Syncing MCP configuration..."
+    ln -sf "$STAGING_DIR/profiles/mcp_config.json" "$HOME/.gemini/antigravity/mcp_config.json"
+fi
+
+# Sync AntiGravity User Rules
+if [ -f "$STAGING_DIR/profiles/user_rules.md" ]; then
+    echo "📜 Syncing User Rules..."
+    ln -sf "$STAGING_DIR/profiles/user_rules.md" "$HOME/.gemini/antigravity/user_rules.md"
+fi
+
 if [ ! -f ".agents/instructions.md" ]; then
     echo "📝 Initializing base instructions..."
     cat > .agents/instructions.md <<EOL
@@ -74,4 +96,4 @@ if [ ! -f ".agents/instructions.md" ]; then
 EOL
 fi
 
-echo "✅ Onboarding complete! Tell AntiGravity: 'Onboard this workspace from my blueprint.'"
+echo "✅ Onboarding complete! Machines are now in sync. Tell AntiGravity: 'Onboard this workspace from my blueprint.'"
