@@ -29,9 +29,22 @@ cp "$STAGING_DIR/.agents/workflows/"* .agents/workflows/
 
 # 4. Setup Project Documentation Structure
 echo "📂 Setting up documentation structure..."
-mkdir -p docs/architecture docs/roadmap docs/decisions
+mkdir -p docs/architecture docs/roadmap docs/decisions docs/proposals docs/guides
 if [ ! -f "docs/README.md" ]; then
     cp "$STAGING_DIR/docs/README.md" docs/README.md
+fi
+
+# 4b. Setup Multi-LLM Review Workflow
+echo "🤝 Setting up multi-LLM review workflow..."
+if [ ! -f "docs/AI-COLLABORATOR-GUIDE.md" ]; then
+    cp "$STAGING_DIR/docs/AI-COLLABORATOR-GUIDE-template.md" docs/AI-COLLABORATOR-GUIDE.md
+    echo "   ✏️  Fill in the [PROJECT-SPECIFIC] sections in docs/AI-COLLABORATOR-GUIDE.md"
+fi
+if [ ! -f "docs/PROPOSAL-FORMAT.md" ]; then
+    cp "$STAGING_DIR/docs/PROPOSAL-FORMAT.md" docs/PROPOSAL-FORMAT.md
+fi
+if [ ! -f "docs/proposals/README.md" ]; then
+    cp "$STAGING_DIR/docs/proposals/README.md" docs/proposals/README.md
 fi
 
 # 5. Initialize Standard Files if missing
@@ -96,4 +109,10 @@ if [ ! -f ".agents/instructions.md" ]; then
 EOL
 fi
 
-echo "✅ Onboarding complete! Machines are now in sync. Tell AntiGravity: 'Onboard this workspace from my blueprint.'"
+echo ""
+echo "✅ Onboarding complete! Machines are now in sync."
+echo ""
+echo "Next steps:"
+echo "  1. Fill in [PROJECT-SPECIFIC] sections in docs/AI-COLLABORATOR-GUIDE.md"
+echo "  2. Update the Quick Start URL in docs/AI-COLLABORATOR-GUIDE.md with your repo path"
+echo "  3. Tell AntiGravity: 'Onboard this workspace from my blueprint.'"
